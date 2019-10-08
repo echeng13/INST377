@@ -11,7 +11,7 @@
     <div class="wrapper">
       <div class="header">Test JSON page</div>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list entries</button>
+      <button class="button" onclick="random_countries();">Click me to replace list entries</button>
       <div class="content">
         <ul class="instructions">
           <li>Delete and re-clone the class repository</li>
@@ -32,8 +32,9 @@
     </div>
   </div>
   <script>
+    function random_countries() {
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
-    const countries = [
+    let countries = [
       { "name": "Afghanistan", "code": "AF" },
       { "name": "Åland Islands", "code": "AX" },
       { "name": "Albania", "code": "AL" },
@@ -278,7 +279,25 @@
       { "name": "Zambia", "code": "ZM" },
       { "name": "Zimbabwe", "code": "ZW" }
     ]
+    /* initialize variables */
+    let countrynames = [];
+    let random = [];
+    let i=0, j=0;
+
+    /* create an array with only names */
+    for(i; i<countries.length; i++) {
+      countrynames[i] = countries[i].name;
+    }
+
+    /* extract 50 random elements from the names array */
+    for(j; j<50; j++){
+    random[j] = countrynames[Math.floor(Math.random() * countrynames.length)];
+    }
+    countries = random;
+
+    /* print out the random list */
     console.log("List of countries in the world", countries);
+    }
   </script>
 </body>
 
