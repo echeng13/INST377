@@ -17,13 +17,20 @@
   </div>
   <script>
     function loadData() {
-      fetch('ajax_sample.json')
+      fetch('https://api.umd.io/v0/bus/routes')
         .then(res => res.json())
-        .then(res => {
-          // you can now work in this area
+        .then(data => {
+          let r = data.map(c => c.route_id);
+          let t = data.map(c => c.title);
+          let list = [];
+          for(let i=0; i<r.length; i++){
+            list[i] = t[i] + " (" + r[i] + ")" + "\n";
+          }
+          document.querySelector(".header").innerText = "UMD Bus Routes " + t[1];
+          return list;
 
-          return res;
         })
+    
         .then(data => document.querySelector(".content").innerText = data);
     }
   </script>
