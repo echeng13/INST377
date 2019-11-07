@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const express = require('express');
 const fetch = require('node-fetch');
 
@@ -46,10 +47,17 @@ app.get('/api', (req, res) => {
   fetch(baseURL)
     .then((r) => r.json())
     .then((data) => {
-      let dummy = [];
-      dummy = data.filter(courses => courses.dept_name === 'INST');
-
-      res.send({ dummy: dummy });
+      let coursearr = [];
+      let namearr = [];
+      let newdata = [];
+      data = data.filter((courses) => courses.dept_id === 'INST');
+      namearr = data.map((courses) => courses.name); 
+      coursearr = data.map((courses) => courses.course_id);
+      for(let i=0; i<namearr.length; i++) {
+        newdata[i] = coursearr[i] + ": " + namearr[i];
+      }
+      data = newdata;
+      res.send({ data: data });
     })
     .catch((err) => {
       console.log(err);
