@@ -57,6 +57,7 @@ app.get('/api', (req, res) => {
         newdata[i] = coursearr[i] + ": " + namearr[i];
       }
       data = newdata;
+      console.log(data);
       res.send({ data: data });
     })
     .catch((err) => {
