@@ -17,21 +17,23 @@
   </div>
   <script>
     function loadData() {
-      fetch('https://api.umd.io/v0/bus/routes')
+      fetch('https://data.princegeorgescountymd.gov/resource/mnkf-cu5c.json')
         .then(res => res.json())
         .then(data => {
-          let r = data.map(c => c.route_id);
-          let t = data.map(c => c.title);
+          let address = data.map(c => c.street_address);
+          let district = data.map(c => c.district);
+          let school = data.map(c => c.school);
           let list = [];
-          for(let i=0; i<r.length; i++){
-            list[i] = t[i] + " (" + r[i] + ")" + "\n";
+          for(let i=0; i<address.length; i++){
+            list[i] = district[i];
           }
-          document.querySelector(".header").innerText = "UMD Bus Routes " + "(" + r[1] + ") " + t[1];
+          list = list.join('\n');
+          document.querySelector(".header").innerText = list;
           return list;
 
         })
     
-        .then(data => document.querySelector(".content").innerText = data);
+        .then(data => document.querySelector(".content").innerText = list);
     }
   </script>
 </body>
