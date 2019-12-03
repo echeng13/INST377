@@ -42,7 +42,7 @@ app.use(express.static('public'));
 // the simplest format is not necessarily the best one.
 // this is, right now, an introduction to Callback Hell
 // but it is okay for a first-level example
-app.get('/api', (req, res) => {
+app.get('/project', (req, res) => {
   const baseURL = 'https://api.umd.io/v0/courses/list';
   fetch(baseURL)
     .then((r) => r.json())
